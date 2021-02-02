@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:switch="${lectures}">
+    <h2 th:case="null">No lectures found!</h2>
+    <div th:case="*">
+        <h2>Lectures</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Lecturer id</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="lecture : ${lectures}">
+                <td th:text="${lecture.getId()}"></td>
+                <td th:text="${lecture.getName()}"></td>
+                <td th:text="${#temporals.format(lecture.getDate(), 'dd.MM.yyyy HH:mm')}"></td>
+                <td th:text="${lecture?.getLecturer()?.getFirstName()}"></td>
+                <td><a th:href="@{lectures/{id}/edit(id=${lecture.getId()})}">Edit</a></td>
+                <td><form th:method="DELETE" th:action="@{lectures/{id}(id=${lecture.getId()})}">
+                    <input type="submit" value="delete"/>
+                </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{/lectures/new}">Create new lecture</a></p>
+    <p><a th:href="@{/}">Back</a></p>
+</div>
+</body>
+</html>
