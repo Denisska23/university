@@ -19,7 +19,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 @RequiredArgsConstructor
-public class HibernateConfig {
+public class Configurations {
 
     private final Environment environment;
 
