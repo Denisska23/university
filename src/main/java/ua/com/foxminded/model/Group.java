@@ -17,8 +17,7 @@ public class Group {
     private Integer id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER,
-    mappedBy = "group")
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "group")
     private List<Student> students;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

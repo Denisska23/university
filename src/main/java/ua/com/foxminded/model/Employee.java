@@ -22,7 +22,8 @@ public class Employee extends Person {
     @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_card_id")
     private IdCard idCard;
-
+    
+    @Enumerated(EnumType.STRING)
     private Position position;
 
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
