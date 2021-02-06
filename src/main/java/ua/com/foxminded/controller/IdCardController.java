@@ -37,7 +37,7 @@ public class IdCardController {
         return "idCard/edit";
     }
 
-    @PatchMapping("/{id}")
+    @PostMapping("/{id}")
     public String updateIdCard(@ModelAttribute("idCard") IdCard idCard) {
         idCardService.update(idCard);
         return "redirect:/id_cards";

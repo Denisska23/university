@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@ToString(exclude = {"students", "lecture"})
+@ToString(exclude = {"lecture"})
 @Entity
 @Table(name = "groups")
 public class Group {
@@ -16,9 +16,6 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "group")
-    private List<Student> students;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "lecture_id")

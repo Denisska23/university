@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true, exclude = {"idCard", "lectures"})
+@ToString(callSuper = true, exclude = {"idCard"})
 @Entity
 @Table(name = "employees")
 public class Employee extends Person {
@@ -25,8 +25,4 @@ public class Employee extends Person {
     
     @Enumerated(EnumType.STRING)
     private Position position;
-
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-            mappedBy = "lecturer")
-    private List<Lecture> lectures;
 }

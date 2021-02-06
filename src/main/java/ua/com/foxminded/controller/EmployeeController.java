@@ -37,7 +37,7 @@ public class EmployeeController {
         return "employee/edit";
     }
 
-    @PatchMapping("/{id}")
+    @PostMapping("/{id}")
     public String updateEmployeeInDb(@ModelAttribute("employee") Employee employee) {
         employeeService.update(employee);
         return "redirect:/employees";

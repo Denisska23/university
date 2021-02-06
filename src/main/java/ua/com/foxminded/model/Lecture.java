@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@ToString(exclude = {"groups", "lecturer"})
+@ToString(exclude = {"lecturer"})
 @Entity
 @Table(name = "lectures")
 public class Lecture {
@@ -26,7 +26,4 @@ public class Lecture {
     @JoinColumn(name = "employee_id")
     private Employee lecturer;
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-            mappedBy = "lecture")
-    private List<Group> groups;
 }

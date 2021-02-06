@@ -37,7 +37,7 @@ public class GroupController {
         return "group/edit";
     }
 
-    @PatchMapping("/{id}")
+    @PostMapping("/{id}")
     public String updateGroupInDb(@ModelAttribute("group") Group group) {
         groupService.update(group);
         return "redirect:/groups";

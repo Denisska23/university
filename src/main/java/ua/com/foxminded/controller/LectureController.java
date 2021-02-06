@@ -37,7 +37,7 @@ public class LectureController {
         return "lecture/edit";
     }
 
-    @PatchMapping("/{id}")
+    @PostMapping("/{id}")
     public String updateLecture(@ModelAttribute("lecture") Lecture lecture) {
         lectureService.update(lecture);
         return "redirect:/lectures";

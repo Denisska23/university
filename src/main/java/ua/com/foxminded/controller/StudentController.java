@@ -1,7 +1,6 @@
 package ua.com.foxminded.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +44,7 @@ public class StudentController {
         return "student/edit";
     }
 
-    @PatchMapping("/{id}")
+    @PostMapping("/{id}")
     public String updateStudentInDb(@ModelAttribute("student") Student student) {
         studentService.update(student);
         return "redirect:/students";

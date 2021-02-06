@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
-@ToString(exclude = {"employee"})
 @Entity
 @Table(name = "id_cards")
 public class IdCard {
@@ -22,7 +21,4 @@ public class IdCard {
     @DateTimeFormat(pattern="dd.MM.yyyy HH:mm")
     @Column(name = "date_expire")
     private LocalDateTime dateExpire;
-
-    @OneToOne(cascade = CascadeType.REFRESH, mappedBy = "idCard")
-    private Employee employee;
 }
