@@ -61,9 +61,9 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     public Student update(Student entity) {
         log.debug("method 'update' invoked with parameter '{}'", entity);
-        Student student = studentDAO.update(entity);
-        log.debug("method 'update(Student entity)' result: '{}'", student);
-        return student;
+        sanitize(entity);
+        log.debug("method 'update(Student entity)' result: '{}'", entity);
+        return studentDAO.update(entity);
     }
 
     @Override
