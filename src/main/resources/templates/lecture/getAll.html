@@ -25,7 +25,7 @@
                 <td th:text="${#temporals.format(lecture.getDate(), 'dd.MM.yyyy HH:mm')}"></td>
                 <td th:text="${lecture?.getLecturer()?.getFirstName()}"></td>
                 <td><a th:href="@{lectures/{id}/edit(id=${lecture.getId()})}">Edit</a></td>
-                <td><form th:method="DELETE" th:action="@{lectures/{id}(id=${lecture.getId()})}">
+                <td><form th:method="DELETE" th:action="@{lectures/{id}/delete(id=${lecture.getId()})}">
                     <input type="submit" value="delete"/>
                 </form>
                 </td>

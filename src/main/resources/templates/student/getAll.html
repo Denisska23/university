@@ -27,7 +27,7 @@
                 <td th:text="${student?.getCourse()?.getId()}"></td>
                 <td th:text="${student?.getGroup()?.getId()}"></td>
                 <td><a th:href="@{students/{id}/edit(id=${student.getId()})}">Edit</a></td>
-                <td><form th:method="DELETE" th:action="@{/students/{id}(id=${student.getId()})}">
+                <td><form th:method="DELETE" th:action="@{/students/{id}/delete(id=${student.getId()})}">
                     <input type="submit" value="delete"/>
                 </form>
                 </td>

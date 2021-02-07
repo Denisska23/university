@@ -27,7 +27,7 @@
                 <td th:text="${employee?.getIdCard()?.getId()}"></td>
                 <td th:text="${employee.getPosition()}"></td>
                 <td><a th:href="@{employees/{id}/edit(id=${employee.getId()})}">Edit</a></td>
-                <td><form th:method="DELETE" th:action="@{/employees/{id}(id=${employee.getId()})}">
+                <td><form th:method="DELETE" th:action="@{/employees/{id}/delete(id=${employee.getId()})}">
                     <input type="submit" value="delete"/>
                 </form>
                 </td>

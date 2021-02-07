@@ -23,7 +23,7 @@
                 <td th:text="${idCard.getNumber()}"></td>
                 <td th:text="${#temporals.format(idCard.getDateExpire(), 'dd.MM.yyyy HH:mm')}"></td>
                 <td><a th:href="@{id_cards/{id}/edit(id=${idCard.getId()})}">Edit</a></td>
-                <td><form th:method="DELETE" th:action="@{id_cards/{id}(id=${idCard.getId()})}">
+                <td><form th:method="DELETE" th:action="@{id_cards/{id}/delete(id=${idCard.getId()})}">
                     <input type="submit" value="delete"/>
                 </form>
                 </td>

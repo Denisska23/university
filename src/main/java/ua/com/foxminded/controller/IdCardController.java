@@ -43,7 +43,7 @@ public class IdCardController {
         return "redirect:/id_cards";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}/delete")
     public String deleteIdCard(@ModelAttribute("idCard") IdCard idCard) {
         idCardService.remove(idCard);
         return "redirect:/id_cards";

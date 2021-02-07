@@ -43,7 +43,7 @@ public class GroupController {
         return "redirect:/groups";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}/delete")
     public String deleteGroup(@PathVariable int id) {
         groupService.remove(groupService.getById(id));
         return "redirect:/groups";

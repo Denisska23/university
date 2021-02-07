@@ -43,7 +43,7 @@ public class LectureController {
         return "redirect:/lectures";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}/delete")
     public String deleteLecture(@PathVariable("id") int id) {
         lectureService.remove(lectureService.getById(id));
         return "redirect:/lectures";
