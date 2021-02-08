@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:switch="${groups}">
+    <h2 th:case="null">No groups found!</h2>
+    <div th:case="*">
+        <h2>Groups</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Lecture id</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="group : ${groups}">
+                <td th:text="${group.getId()}"></td>
+                <td th:text="${group.getName()}"></td>
+                <td th:text="${group?.getLecture()?.getId()}"></td>
+                <td><a th:href="@{groups/{id}/edit(id=${group.getId()})}">Edit</a></td>
+                <td><form th:method="DELETE" th:action="@{/groups/{id}/delete(id=${group.getId()})}">
+                    <input type="submit" value="delete"/>
+                </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{/groups/new}">Create new group</a></p>
+    <p><a th:href="@{/}">Back</a></p>
+</div>
+</body>
+</html>

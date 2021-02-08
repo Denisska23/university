@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit student</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/employees/{id}(id=${employee.getId()})}" th:object="${employee}">
+
+    <label for="firstName">Edit first name: </label>
+    <input type="text" th:field="*{firstName}" id="firstName">
+
+    <label for="lastName">Edit last name: </label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+
+    <label for="IdCardId">Edit idCard id: </label>
+    <input type="text" th:field="*{idCard.id}"  id="IdCardId">
+
+    <label for="position">Edit employee position:
+        <select th:field="*{position}" id="position">
+            <option th:each="positionName : ${T(ua.com.foxminded.enums.Position).values()}"
+                    th:value="${positionName}"
+                    th:text="${positionName}"></option>
+        </select>
+    </label>
+
+
+    <input type="submit" value="update">
+
+</form>
+
+</body>
+</html>

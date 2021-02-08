@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students list</title>
+</head>
+<body>
+<div th:switch="${students}">
+    <h2 th:case="null">No students found!</h2>
+    <div th:case="*">
+        <h2>Students</h2>
+        <table border="0">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Course id</th>
+                <th>Group id</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.getId()}"></td>
+                <td th:text="${student.getFirstName()}"></td>
+                <td th:text="${student.getLastName()}"></td>
+                <td th:text="${student?.getCourse()?.getId()}"></td>
+                <td th:text="${student?.getGroup()?.getId()}"></td>
+                <td><a th:href="@{students/{id}/edit(id=${student.getId()})}">Edit</a></td>
+                <td><form th:method="DELETE" th:action="@{/students/{id}/delete(id=${student.getId()})}">
+                    <input type="submit" value="delete"/>
+                </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{/students/new}">Create new student</a></p>
+    <p><a th:href="@{/}">Back</a></p>
+</div>
+</body>
+</html>

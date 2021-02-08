@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:switch="${idCards}">
+    <h2 th:case="null">No idCards found!</h2>
+    <div th:case="*">
+        <h2>Id Cards</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Number</th>
+                <th>Date expire</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="idCard : ${idCards}">
+                <td th:text="${idCard.getId()}"></td>
+                <td th:text="${idCard.getNumber()}"></td>
+                <td th:text="${#temporals.format(idCard.getDateExpire(), 'dd.MM.yyyy HH:mm')}"></td>
+                <td><a th:href="@{id_cards/{id}/edit(id=${idCard.getId()})}">Edit</a></td>
+                <td><form th:method="DELETE" th:action="@{id_cards/{id}/delete(id=${idCard.getId()})}">
+                    <input type="submit" value="delete"/>
+                </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{/id_cards/new}">Create new id card</a></p>
+    <p><a th:href="@{/}">Back</a></p>
+</div>
+</body>
+</html>
