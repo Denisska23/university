@@ -1,8 +1,9 @@
 package ua.com.foxminded.dao.adapters;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import ua.com.foxminded.dao.EmployeeRepo;
+import ua.com.foxminded.dao.StudentRepo;
 import ua.com.foxminded.dao.EmployeeDAO;
 import ua.com.foxminded.model.Employee;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeDaoAdapter implements EmployeeDAO {
 
-    private final JpaRepository<Employee, Integer> repository;
+    private final EmployeeRepo repository;
 
     @Override
     public Employee add(Employee employee) {

@@ -1,8 +1,9 @@
 package ua.com.foxminded.dao.adapters;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import ua.com.foxminded.dao.LectureRepo;
+import ua.com.foxminded.dao.StudentRepo;
 import ua.com.foxminded.dao.LectureDAO;
 import ua.com.foxminded.model.Lecture;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LectureDaoAdapter implements LectureDAO {
 
-    private final JpaRepository<Lecture, Integer> repository;
+    private final LectureRepo repository;
 
     @Override
     public Lecture add(Lecture lecture) {
