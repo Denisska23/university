@@ -3,15 +3,14 @@ package ua.com.foxminded.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.EmployeeDAO;
 import ua.com.foxminded.model.Employee;
 import ua.com.foxminded.service.EmployeeService;
 
 import java.util.List;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -20,7 +19,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeDAO employeeDAO;
 
     @Override
-    @Transactional
     public Employee add(Employee entity) {
         LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
         Employee employee = employeeDAO.add(entity);
@@ -29,7 +27,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public Employee getById(Integer id) {
         LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
         Employee employee = employeeDAO.getById(id);
@@ -38,7 +35,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public List<Employee> getAll() {
         LOGGER.debug("method 'getAll' invoked");
         List<Employee> employees = employeeDAO.getAll();
@@ -47,7 +43,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public Employee update(Employee entity) {
         LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
         Employee employee = employeeDAO.update(entity);
@@ -56,7 +51,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public void remove(Employee entity) {
         LOGGER.debug("method 'remove' invoked with parameter '{}'", entity);
         employeeDAO.remove(entity);

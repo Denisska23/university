@@ -6,7 +6,6 @@ import lombok.ToString;
 import ua.com.foxminded.enums.Position;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

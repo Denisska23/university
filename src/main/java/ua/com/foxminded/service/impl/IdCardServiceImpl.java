@@ -3,15 +3,14 @@ package ua.com.foxminded.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.IdCardDAO;
 import ua.com.foxminded.model.IdCard;
 import ua.com.foxminded.service.IdCardService;
 
 import java.util.List;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class IdCardServiceImpl implements IdCardService {
 
@@ -20,7 +19,6 @@ public class IdCardServiceImpl implements IdCardService {
     private final IdCardDAO idCardDAO;
 
     @Override
-    @Transactional
     public IdCard add(IdCard entity) {
         LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
         IdCard idCard = idCardDAO.add(entity);
@@ -29,7 +27,6 @@ public class IdCardServiceImpl implements IdCardService {
     }
 
     @Override
-    @Transactional
     public IdCard getById(Integer id) {
         LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
         IdCard idCard = idCardDAO.getById(id);
@@ -38,7 +35,6 @@ public class IdCardServiceImpl implements IdCardService {
     }
 
     @Override
-    @Transactional
     public List<IdCard> getAll() {
         LOGGER.debug("method 'getAll' invoked");
         List<IdCard> idCards = idCardDAO.getAll();
@@ -47,7 +43,6 @@ public class IdCardServiceImpl implements IdCardService {
     }
 
     @Override
-    @Transactional
     public IdCard update(IdCard entity) {
         LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
         IdCard idCard = idCardDAO.update(entity);
@@ -56,7 +51,6 @@ public class IdCardServiceImpl implements IdCardService {
     }
 
     @Override
-    @Transactional
     public void remove(IdCard entity) {
         LOGGER.debug("method 'remove' invoked with parameter '{}'", entity);
         idCardDAO.remove(entity);

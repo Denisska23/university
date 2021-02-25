@@ -3,15 +3,14 @@ package ua.com.foxminded.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.CourseDAO;
 import ua.com.foxminded.model.Course;
 import ua.com.foxminded.service.CourseService;
 
 import java.util.List;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
 
@@ -20,7 +19,6 @@ public class CourseServiceImpl implements CourseService {
     private final CourseDAO courseDAO;
 
     @Override
-    @Transactional
     public Course add(Course entity) {
         LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
         Course course = courseDAO.add(entity);
@@ -29,7 +27,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
     public Course getById(String id) {
         LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
         Course course = courseDAO.getById(id);
@@ -38,7 +35,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
     public List<Course> getAll() {
         LOGGER.debug("method 'getAll' invoked");
         List<Course> courseList = courseDAO.getAll();
@@ -47,7 +43,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
     public Course update(Course entity) {
         LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
         Course course = courseDAO.update(entity);
@@ -56,7 +51,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
     public void remove(Course entity) {
         LOGGER.debug("method 'remove' invoked with parameter '{}'", entity);
         courseDAO.remove(entity);
