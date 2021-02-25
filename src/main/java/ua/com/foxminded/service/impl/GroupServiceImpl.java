@@ -20,7 +20,6 @@ public class GroupServiceImpl implements GroupService {
     private final GroupDAO groupDAO;
 
     @Override
-    @Transactional
     public Group add(Group entity) {
         LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
         Group group = groupDAO.add(entity);
@@ -29,7 +28,6 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    @Transactional
     public Group getById(Integer id) {
         LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
         Group group = groupDAO.getById(id);
@@ -38,7 +36,6 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    @Transactional
     public List<Group> getAll() {
         LOGGER.debug("method 'getAll' invoked");
         List<Group> groups = groupDAO.getAll();
@@ -47,7 +44,6 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    @Transactional
     public Group update(Group entity) {
         LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
         Group group = groupDAO.update(entity);
@@ -56,7 +52,6 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    @Transactional
     public void remove(Group entity) {
         LOGGER.debug("method 'remove' invoked with parameter '{}'", entity);
         groupDAO.remove(entity);

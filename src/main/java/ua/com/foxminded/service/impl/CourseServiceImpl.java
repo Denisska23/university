@@ -20,7 +20,6 @@ public class CourseServiceImpl implements CourseService {
     private final CourseDAO courseDAO;
 
     @Override
-    @Transactional
     public Course add(Course entity) {
         LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
         Course course = courseDAO.add(entity);
@@ -29,7 +28,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
     public Course getById(String id) {
         LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
         Course course = courseDAO.getById(id);
@@ -38,7 +36,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
     public List<Course> getAll() {
         LOGGER.debug("method 'getAll' invoked");
         List<Course> courseList = courseDAO.getAll();
@@ -47,7 +44,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
     public Course update(Course entity) {
         LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
         Course course = courseDAO.update(entity);
@@ -56,7 +52,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @Transactional
     public void remove(Course entity) {
         LOGGER.debug("method 'remove' invoked with parameter '{}'", entity);
         courseDAO.remove(entity);

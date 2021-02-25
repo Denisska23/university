@@ -21,7 +21,6 @@ public class StudentServiceImpl implements StudentService {
     private final StudentDAO studentDAO;
 
     @Override
-    @Transactional
     public Student add(Student student) {
         log.debug("method 'add' invoked with parameter '{}'", student);
         sanitize(student);
@@ -40,7 +39,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
     public Student getById(Integer id) {
         log.debug("method 'getById' invoked with parameter '{}'", id);
         Student student = studentDAO.getById(id);
@@ -49,7 +47,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
     public List<Student> getAll() {
         log.debug("method 'getAll' invoked");
         List<Student> students = studentDAO.getAll();
@@ -58,7 +55,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
     public Student update(Student entity) {
         log.debug("method 'update' invoked with parameter '{}'", entity);
         sanitize(entity);
@@ -67,7 +63,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
     public void remove(Student entity) {
         log.debug("method 'remove' invoked with parameter '{}'", entity);
         studentDAO.remove(entity);

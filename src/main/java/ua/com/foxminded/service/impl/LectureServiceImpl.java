@@ -20,7 +20,6 @@ public class LectureServiceImpl implements LectureService {
     private final LectureDAO lectureDAO;
 
     @Override
-    @Transactional
     public Lecture add(Lecture entity) {
         LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
         Lecture lecture = lectureDAO.add(entity);
@@ -29,7 +28,6 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    @Transactional
     public Lecture getById(Integer id) {
         LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
         Lecture lecture = lectureDAO.getById(id);
@@ -38,7 +36,6 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    @Transactional
     public List<Lecture> getAll() {
         LOGGER.debug("method 'getAll' invoked");
         List<Lecture> lectures = lectureDAO.getAll();
@@ -47,7 +44,6 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    @Transactional
     public Lecture update(Lecture entity) {
         LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
         Lecture lecture = lectureDAO.update(entity);
@@ -56,7 +52,6 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    @Transactional
     public void remove(Lecture entity) {
         LOGGER.debug("method 'remove' invoked");
         lectureDAO.remove(entity);

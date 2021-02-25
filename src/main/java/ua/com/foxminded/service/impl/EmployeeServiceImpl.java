@@ -20,7 +20,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeDAO employeeDAO;
 
     @Override
-    @Transactional
     public Employee add(Employee entity) {
         LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
         Employee employee = employeeDAO.add(entity);
@@ -29,7 +28,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public Employee getById(Integer id) {
         LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
         Employee employee = employeeDAO.getById(id);
@@ -38,7 +36,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public List<Employee> getAll() {
         LOGGER.debug("method 'getAll' invoked");
         List<Employee> employees = employeeDAO.getAll();
@@ -47,7 +44,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public Employee update(Employee entity) {
         LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
         Employee employee = employeeDAO.update(entity);
@@ -56,7 +52,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public void remove(Employee entity) {
         LOGGER.debug("method 'remove' invoked with parameter '{}'", entity);
         employeeDAO.remove(entity);
