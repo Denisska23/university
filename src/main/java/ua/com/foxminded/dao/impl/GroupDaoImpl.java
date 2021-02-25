@@ -4,13 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
 import ua.com.foxminded.dao.GroupDAO;
 import ua.com.foxminded.model.Group;
 
 import java.util.List;
 
-@Component
+
 @RequiredArgsConstructor
 public class GroupDaoImpl implements GroupDAO {
 

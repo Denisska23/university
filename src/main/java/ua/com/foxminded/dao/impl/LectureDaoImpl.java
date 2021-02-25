@@ -3,13 +3,12 @@ package ua.com.foxminded.dao.impl;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
 import ua.com.foxminded.dao.LectureDAO;
 import ua.com.foxminded.model.Lecture;
 
 import java.util.List;
 
-@Component
+
 @RequiredArgsConstructor
 public class LectureDaoImpl implements LectureDAO {
 
