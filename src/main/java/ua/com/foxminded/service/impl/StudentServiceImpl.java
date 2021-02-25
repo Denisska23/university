@@ -3,6 +3,7 @@ package ua.com.foxminded.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.foxminded.dao.StudentDAO;
 import ua.com.foxminded.model.Student;
@@ -13,7 +14,7 @@ import java.util.List;
 import static java.util.Optional.ofNullable;
 
 @Slf4j
-@Component
+@Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 

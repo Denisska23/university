@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.foxminded.dao.IdCardDAO;
 import ua.com.foxminded.model.IdCard;
@@ -11,7 +12,7 @@ import ua.com.foxminded.service.IdCardService;
 
 import java.util.List;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class IdCardServiceImpl implements IdCardService {
 
