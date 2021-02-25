@@ -2,9 +2,8 @@ package ua.com.foxminded.dao.adapters;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import ua.com.foxminded.dao.EmployeeRepo;
-import ua.com.foxminded.dao.StudentRepo;
 import ua.com.foxminded.dao.EmployeeDAO;
+import ua.com.foxminded.dao.EmployeeRepo;
 import ua.com.foxminded.model.Employee;
 
 import java.util.List;

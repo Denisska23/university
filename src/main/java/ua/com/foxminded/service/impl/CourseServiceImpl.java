@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ua.com.foxminded.dao.CourseDAO;
 import ua.com.foxminded.model.Course;
 import ua.com.foxminded.service.CourseService;

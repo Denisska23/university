@@ -2,9 +2,8 @@ package ua.com.foxminded.dao.adapters;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import ua.com.foxminded.dao.GroupRepo;
-import ua.com.foxminded.dao.StudentRepo;
 import ua.com.foxminded.dao.GroupDAO;
+import ua.com.foxminded.dao.GroupRepo;
 import ua.com.foxminded.model.Group;
 
 import java.util.List;

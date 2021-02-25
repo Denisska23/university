@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.CourseDAO;
 import ua.com.foxminded.dao.CourseRepo;
-import ua.com.foxminded.dao.StudentRepo;
 import ua.com.foxminded.model.Course;
 
 import java.util.List;

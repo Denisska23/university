@@ -3,7 +3,6 @@ package ua.com.foxminded.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ua.com.foxminded.dao.StudentDAO;
 import ua.com.foxminded.model.Student;
 import ua.com.foxminded.service.StudentService;

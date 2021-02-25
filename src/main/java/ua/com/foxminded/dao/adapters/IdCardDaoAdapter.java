@@ -2,9 +2,8 @@ package ua.com.foxminded.dao.adapters;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import ua.com.foxminded.dao.IdCardRepo;
-import ua.com.foxminded.dao.StudentRepo;
 import ua.com.foxminded.dao.IdCardDAO;
+import ua.com.foxminded.dao.IdCardRepo;
 import ua.com.foxminded.model.IdCard;
 
 import java.util.List;
