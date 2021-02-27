@@ -9,9 +9,11 @@
 <form th:method="POST" th:action="@{/students}" th:object="${student}">
     <label for="firstName">Enter first name: </label>
     <input type="text" th:field="*{firstName}" id="firstName">
+    <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
 
     <label for="lastName">Enter last name: </label>
     <input type="text" th:field="*{lastName}" id="lastName">
+    <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
 
     <label for="courseId">Enter course id:
         <select th:field="*{course.id}" id="courseId">

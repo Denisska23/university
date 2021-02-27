@@ -3,9 +3,12 @@ package ua.com.foxminded.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.com.foxminded.model.IdCard;
 import ua.com.foxminded.service.IdCardService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/id_cards")
@@ -26,7 +29,10 @@ public class IdCardController {
     }
 
     @PostMapping
-    public String createIdCard(@ModelAttribute("idCard") IdCard idCard) {
+    public String createIdCard(@ModelAttribute("idCard") @Valid IdCard idCard, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "idCard/new";
+        }
         idCardService.add(idCard);
         return "redirect:/id_cards";
     }
@@ -38,7 +44,10 @@ public class IdCardController {
     }
 
     @PostMapping("/{id}")
-    public String updateIdCard(@ModelAttribute("idCard") IdCard idCard) {
+    public String updateIdCard(@ModelAttribute("idCard") @Valid IdCard idCard, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "idCard/new";
+        }
         idCardService.update(idCard);
         return "redirect:/id_cards";
     }

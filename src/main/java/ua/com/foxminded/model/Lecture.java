@@ -5,6 +5,7 @@ import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,7 +18,11 @@ public class Lecture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String name;
+
+    @FutureOrPresent
     @DateTimeFormat(pattern="dd.MM.yyyy HH:mm")
     private LocalDateTime date;
 

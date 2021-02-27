@@ -9,9 +9,11 @@
 <form th:method="POST" th:action="@{/id_cards}" th:object="${idCard}">
     <label for="number">Enter number: </label>
     <input type="text" th:field="*{number}" id="number">
+    <div style="color: red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>
 
     <label for="dateExpire">Enter date expire: </label>
     <input type="text" th:field="*{dateExpire}" placeholder="dd.MM.yyyy HH:mm" id="dateExpire"/>
+    <div style="color: red" th:if="${#fields.hasErrors('dateExpire')}" th:errors="*{dateExpire}"></div>
 
     <input type="submit" value="Create"/>
 </form>

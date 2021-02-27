@@ -3,11 +3,13 @@ package ua.com.foxminded.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.com.foxminded.model.Student;
 import ua.com.foxminded.service.CourseService;
 import ua.com.foxminded.service.StudentService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -32,7 +34,12 @@ public class StudentController {
     }
 
     @PostMapping
-    public String addStudentToDb(@ModelAttribute("student") Student student) {
+    public String addStudentToDb(@ModelAttribute("student") @Valid Student student,
+                                 BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("courses", courseService.getAll());
+            return "student/new";
+        }
         studentService.add(student);
         return "redirect:/students";
     }
@@ -45,7 +52,12 @@ public class StudentController {
     }
 
     @PostMapping("/{id}")
-    public String updateStudentInDb(@ModelAttribute("student") Student student) {
+    public String updateStudentInDb(@ModelAttribute("student") @Valid Student student,
+                                    BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("courses", courseService.getAll());
+            return "student/new";
+        }
         studentService.update(student);
         return "redirect:/students";
     }

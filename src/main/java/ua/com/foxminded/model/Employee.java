@@ -6,6 +6,7 @@ import lombok.ToString;
 import ua.com.foxminded.enums.Position;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -18,6 +19,7 @@ public class Employee extends Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_card_id")
     private IdCard idCard;
