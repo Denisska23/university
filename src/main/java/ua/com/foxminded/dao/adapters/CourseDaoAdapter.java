@@ -21,7 +21,7 @@ public class CourseDaoAdapter implements CourseDAO {
 
     @Override
     public Course getById(String id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override

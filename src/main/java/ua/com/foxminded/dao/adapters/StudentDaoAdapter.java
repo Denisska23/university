@@ -21,7 +21,7 @@ public class StudentDaoAdapter implements StudentDAO {
 
     @Override
     public Student getById(Integer id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override

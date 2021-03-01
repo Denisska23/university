@@ -21,7 +21,7 @@ public class GroupDaoAdapter implements GroupDAO {
 
     @Override
     public Group getById(Integer id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override

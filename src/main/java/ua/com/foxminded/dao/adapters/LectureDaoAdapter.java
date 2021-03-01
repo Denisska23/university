@@ -21,7 +21,7 @@ public class LectureDaoAdapter implements LectureDAO {
 
     @Override
     public Lecture getById(Integer id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override
