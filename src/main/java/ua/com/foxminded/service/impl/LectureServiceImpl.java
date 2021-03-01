@@ -1,8 +1,7 @@
 package ua.com.foxminded.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.LectureDAO;
 import ua.com.foxminded.model.Lecture;
@@ -10,50 +9,49 @@ import ua.com.foxminded.service.LectureService;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LectureServiceImpl implements LectureService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(LectureServiceImpl.class);
-
+    
     private final LectureDAO lectureDAO;
 
     @Override
     public Lecture add(Lecture entity) {
-        LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
+        log.debug("method 'add' invoked with parameter '{}'", entity);
         Lecture lecture = lectureDAO.add(entity);
-        LOGGER.debug("method 'add(Lecture entity)' result: '{}'", lecture);
+        log.debug("method 'add(Lecture entity)' result: '{}'", lecture);
         return lecture;
     }
 
     @Override
     public Lecture getById(Integer id) {
-        LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
+        log.debug("method 'getById' invoked with parameter '{}'", id);
         Lecture lecture = lectureDAO.getById(id);
-        LOGGER.debug("method 'getById(Integer id)' result: '{}'", lecture);
+        log.debug("method 'getById(Integer id)' result: '{}'", lecture);
         return lecture;
     }
 
     @Override
     public List<Lecture> getAll() {
-        LOGGER.debug("method 'getAll' invoked");
+        log.debug("method 'getAll' invoked");
         List<Lecture> lectures = lectureDAO.getAll();
-        LOGGER.debug("method 'getAll()' result: '{}'", lectures);
+        log.debug("method 'getAll()' result: '{}'", lectures);
         return lectures;
     }
 
     @Override
     public Lecture update(Lecture entity) {
-        LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
+        log.debug("method 'update' invoked with parameter '{}'", entity);
         Lecture lecture = lectureDAO.update(entity);
-        LOGGER.debug("method 'update(Lecture entity)' ressult: '{}'", lecture);
+        log.debug("method 'update(Lecture entity)' ressult: '{}'", lecture);
         return lecture;
     }
 
     @Override
     public void remove(Lecture entity) {
-        LOGGER.debug("method 'remove' invoked");
+        log.debug("method 'remove' invoked");
         lectureDAO.remove(entity);
-        LOGGER.debug("remove completed");
+        log.debug("remove completed");
     }
 }

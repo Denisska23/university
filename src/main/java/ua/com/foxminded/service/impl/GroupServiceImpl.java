@@ -1,8 +1,7 @@
 package ua.com.foxminded.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.GroupDAO;
 import ua.com.foxminded.model.Group;
@@ -10,50 +9,49 @@ import ua.com.foxminded.service.GroupService;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class GroupServiceImpl implements GroupService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(GroupServiceImpl.class);
-
+    
     private final GroupDAO groupDAO;
 
     @Override
     public Group add(Group entity) {
-        LOGGER.debug("method 'add' invoked with parameter '{}'", entity);
+        log.debug("method 'add' invoked with parameter '{}'", entity);
         Group group = groupDAO.add(entity);
-        LOGGER.debug("method 'add(Group entity)' result: '{}'", group);
+        log.debug("method 'add(Group entity)' result: '{}'", group);
         return group;
     }
 
     @Override
     public Group getById(Integer id) {
-        LOGGER.debug("method 'getById' invoked with parameter '{}'", id);
+        log.debug("method 'getById' invoked with parameter '{}'", id);
         Group group = groupDAO.getById(id);
-        LOGGER.debug("method 'getById(Integer id)' result: '{}'", group);
+        log.debug("method 'getById(Integer id)' result: '{}'", group);
         return group;
     }
 
     @Override
     public List<Group> getAll() {
-        LOGGER.debug("method 'getAll' invoked");
+        log.debug("method 'getAll' invoked");
         List<Group> groups = groupDAO.getAll();
-        LOGGER.debug("method 'getAll()' result: '{}'", groups);
+        log.debug("method 'getAll()' result: '{}'", groups);
         return groups;
     }
 
     @Override
     public Group update(Group entity) {
-        LOGGER.debug("method 'update' invoked with parameter '{}'", entity);
+        log.debug("method 'update' invoked with parameter '{}'", entity);
         Group group = groupDAO.update(entity);
-        LOGGER.debug("method 'update(Group entity)' result: '{}'", group);
+        log.debug("method 'update(Group entity)' result: '{}'", group);
         return group;
     }
 
     @Override
     public void remove(Group entity) {
-        LOGGER.debug("method 'remove' invoked with parameter '{}'", entity);
+        log.debug("method 'remove' invoked with parameter '{}'", entity);
         groupDAO.remove(entity);
-        LOGGER.debug("method 'remove(Group entity)' complete");
+        log.debug("method 'remove(Group entity)' complete");
     }
 }
