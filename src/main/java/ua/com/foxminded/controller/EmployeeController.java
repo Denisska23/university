@@ -3,9 +3,12 @@ package ua.com.foxminded.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.com.foxminded.model.Employee;
 import ua.com.foxminded.service.EmployeeService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/employees")
@@ -26,7 +29,10 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public String addEmployeeToDb(@ModelAttribute("employee") Employee employee) {
+    public String addEmployeeToDb(@ModelAttribute("employee") @Valid Employee employee, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "employee/new";
+        }
         employeeService.add(employee);
         return "redirect:/employees";
     }
@@ -38,7 +44,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/{id}")
-    public String updateEmployeeInDb(@ModelAttribute("employee") Employee employee) {
+    public String updateEmployeeInDb(@ModelAttribute("employee") @Valid Employee employee, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "employee/new";
+        }
         employeeService.update(employee);
         return "redirect:/employees";
     }

@@ -75,3 +75,4 @@ insert into students(id, first_name, last_name, course_id, group_id)
 VALUES (1, 'John', 'Week','V',1);
 
 
+

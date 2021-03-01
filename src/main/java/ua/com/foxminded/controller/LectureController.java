@@ -3,9 +3,12 @@ package ua.com.foxminded.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.com.foxminded.model.Lecture;
 import ua.com.foxminded.service.LectureService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/lectures")
@@ -26,7 +29,10 @@ public class LectureController {
     }
 
     @PostMapping
-    public String createLecture(@ModelAttribute("lecture") Lecture lecture) {
+    public String createLecture(@ModelAttribute("lecture") @Valid Lecture lecture, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "lecture/new";
+        }
         lectureService.add(lecture);
         return "redirect:/lectures";
     }
@@ -38,7 +44,10 @@ public class LectureController {
     }
 
     @PostMapping("/{id}")
-    public String updateLecture(@ModelAttribute("lecture") Lecture lecture) {
+    public String updateLecture(@ModelAttribute("lecture") @Valid Lecture lecture, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "lecture/edit";
+        }
         lectureService.update(lecture);
         return "redirect:/lectures";
     }

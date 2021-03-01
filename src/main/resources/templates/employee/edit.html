@@ -10,12 +10,15 @@
 
     <label for="firstName">Edit first name: </label>
     <input type="text" th:field="*{firstName}" id="firstName">
+    <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
 
     <label for="lastName">Edit last name: </label>
     <input type="text" th:field="*{lastName}" id="lastName">
+    <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
 
     <label for="IdCardId">Edit idCard id: </label>
     <input type="text" th:field="*{idCard.id}"  id="IdCardId">
+    <div style="color: red" th:if="${#fields.hasErrors('idCard.id')}" th:errors="*{idCard.id}"></div>
 
     <label for="position">Edit employee position:
         <select th:field="*{position}" id="position">

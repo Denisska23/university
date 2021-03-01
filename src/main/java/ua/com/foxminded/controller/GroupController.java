@@ -3,9 +3,12 @@ package ua.com.foxminded.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ua.com.foxminded.model.Group;
 import ua.com.foxminded.service.GroupService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/groups")
@@ -26,7 +29,10 @@ public class GroupController {
     }
 
     @PostMapping
-    public String addGroupToDb(@ModelAttribute("group") Group group) {
+    public String addGroupToDb(@ModelAttribute("group") @Valid Group group, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "group/new";
+        }
         groupService.add(group);
         return "redirect:/groups";
     }
@@ -38,7 +44,10 @@ public class GroupController {
     }
 
     @PostMapping("/{id}")
-    public String updateGroupInDb(@ModelAttribute("group") Group group) {
+    public String updateGroupInDb(@ModelAttribute("group") @Valid Group group, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "group/new";
+        }
         groupService.update(group);
         return "redirect:/groups";
     }
