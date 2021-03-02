@@ -8,6 +8,7 @@ import ua.com.foxminded.model.Student;
 import ua.com.foxminded.service.StudentService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -18,10 +19,7 @@ public class StudentRestController {
     private final StudentService studentService;
 
     @PostMapping
-    public ResponseEntity<Student> saveStudent(@RequestBody @Valid Student student) {
-        if (student == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Student> saveStudent(@RequestBody @Valid @NotNull Student student) {
         Student savedStudent = studentService.add(student);
         return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
@@ -36,13 +34,8 @@ public class StudentRestController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable Integer id) {
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<Student> getStudent(@PathVariable @NotNull Integer id) {
         Student student = studentService.getById(id);
-
         if (student == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -50,9 +43,8 @@ public class StudentRestController {
     }
 
     @PutMapping()
-    public ResponseEntity<Student> updateStudent(@RequestBody @Valid Student student) {
+    public ResponseEntity<Student> updateStudent(@RequestBody @Valid @NotNull Student student) {
         Student updatedStudent = studentService.update(student);
-
         if (updatedStudent == null) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
@@ -60,7 +52,7 @@ public class StudentRestController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Student> deleteStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> deleteStudent(@RequestBody @NotNull Student student) {
         studentService.remove(student);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -8,6 +8,7 @@ import ua.com.foxminded.model.IdCard;
 import ua.com.foxminded.service.IdCardService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -18,10 +19,7 @@ public class IdCardRestController {
     private final IdCardService idCardService;
 
     @PostMapping
-    public ResponseEntity<IdCard> saveIdCard(@RequestBody @Valid IdCard idCard) {
-        if (idCard == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<IdCard> saveIdCard(@RequestBody @Valid @NotNull IdCard idCard) {
         IdCard savedIdCard = idCardService.add(idCard);
         return new ResponseEntity<>(savedIdCard, HttpStatus.CREATED);
     }
@@ -36,13 +34,8 @@ public class IdCardRestController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<IdCard> getIdCard(@PathVariable Integer id) {
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<IdCard> getIdCard(@PathVariable @NotNull Integer id) {
         IdCard idCard = idCardService.getById(id);
-
         if (idCard == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -50,9 +43,8 @@ public class IdCardRestController {
     }
 
     @PutMapping()
-    public ResponseEntity<IdCard> updateIdCard(@RequestBody @Valid IdCard idCard) {
+    public ResponseEntity<IdCard> updateIdCard(@RequestBody @Valid @NotNull IdCard idCard) {
         IdCard updatedIdCard = idCardService.update(idCard);
-
         if (updatedIdCard == null) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
@@ -60,7 +52,7 @@ public class IdCardRestController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<IdCard> deleteIdCard(@RequestBody IdCard idCard) {
+    public ResponseEntity<IdCard> deleteIdCard(@RequestBody @NotNull IdCard idCard) {
         idCardService.remove(idCard);
         return new ResponseEntity<>(HttpStatus.OK);
     }

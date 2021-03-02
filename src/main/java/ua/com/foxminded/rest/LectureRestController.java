@@ -8,6 +8,7 @@ import ua.com.foxminded.model.Lecture;
 import ua.com.foxminded.service.LectureService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -18,10 +19,7 @@ public class LectureRestController {
     private final LectureService lectureService;
 
     @PostMapping
-    public ResponseEntity<Lecture> saveLecture(@RequestBody @Valid Lecture lecture) {
-        if (lecture == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Lecture> saveLecture(@RequestBody @Valid @NotNull Lecture lecture) {
         Lecture savedLecture = lectureService.add(lecture);
         return new ResponseEntity<>(savedLecture, HttpStatus.CREATED);
     }
@@ -36,13 +34,8 @@ public class LectureRestController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Lecture> getLecture(@PathVariable Integer id) {
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<Lecture> getLecture(@PathVariable @NotNull Integer id) {
         Lecture lecture = lectureService.getById(id);
-
         if (lecture == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -50,9 +43,8 @@ public class LectureRestController {
     }
 
     @PutMapping()
-    public ResponseEntity<Lecture> updateLecture(@RequestBody @Valid Lecture lecture) {
+    public ResponseEntity<Lecture> updateLecture(@RequestBody @Valid @NotNull Lecture lecture) {
         Lecture updatedLecture = lectureService.update(lecture);
-
         if (updatedLecture == null) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
@@ -60,7 +52,7 @@ public class LectureRestController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Lecture> deleteLecture(@RequestBody Lecture lecture) {
+    public ResponseEntity<Lecture> deleteLecture(@RequestBody @NotNull Lecture lecture) {
         lectureService.remove(lecture);
         return new ResponseEntity<>(HttpStatus.OK);
     }

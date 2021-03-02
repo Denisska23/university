@@ -8,6 +8,7 @@ import ua.com.foxminded.model.Employee;
 import ua.com.foxminded.service.EmployeeService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -18,10 +19,7 @@ public class EmployeeRestController {
     private final EmployeeService employeeService;
 
     @PostMapping
-    public ResponseEntity<Employee> saveEmployee(@RequestBody @Valid Employee employee) {
-        if (employee == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Employee> saveEmployee(@RequestBody @Valid @NotNull Employee employee) {
         Employee savedEmployee = employeeService.add(employee);
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
@@ -36,13 +34,8 @@ public class EmployeeRestController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Employee> getEmployee(@PathVariable Integer id) {
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<Employee> getEmployee(@PathVariable @NotNull Integer id) {
         Employee employee = employeeService.getById(id);
-
         if (employee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -50,9 +43,8 @@ public class EmployeeRestController {
     }
 
     @PutMapping()
-    public ResponseEntity<Employee> updateEmployee(@RequestBody @Valid Employee employee) {
+    public ResponseEntity<Employee> updateEmployee(@RequestBody @Valid @NotNull Employee employee) {
         Employee updatedEmployee = employeeService.update(employee);
-
         if (updatedEmployee == null) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
@@ -60,7 +52,7 @@ public class EmployeeRestController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Employee> deleteEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> deleteEmployee(@RequestBody @NotNull Employee employee) {
         employeeService.remove(employee);
         return new ResponseEntity<>(HttpStatus.OK);
     }

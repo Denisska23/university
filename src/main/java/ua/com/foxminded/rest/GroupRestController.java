@@ -8,6 +8,7 @@ import ua.com.foxminded.model.Group;
 import ua.com.foxminded.service.GroupService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -18,10 +19,7 @@ public class GroupRestController {
     private final GroupService groupService;
 
     @PostMapping
-    public ResponseEntity<Group> saveGroup(@RequestBody @Valid Group group) {
-        if (group == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Group> saveGroup(@RequestBody @Valid @NotNull Group group) {
         Group savedGroup = groupService.add(group);
         return new ResponseEntity<>(savedGroup, HttpStatus.CREATED);
     }
@@ -36,13 +34,8 @@ public class GroupRestController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Group> getGroup(@PathVariable Integer id) {
-        if (id == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<Group> getGroup(@PathVariable @NotNull Integer id) {
         Group group = groupService.getById(id);
-
         if (group == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -50,9 +43,8 @@ public class GroupRestController {
     }
 
     @PutMapping()
-    public ResponseEntity<Group> updateGroup(@RequestBody @Valid Group group) {
+    public ResponseEntity<Group> updateGroup(@RequestBody @Valid @NotNull Group group) {
         Group updatedGroup = groupService.update(group);
-
         if (updatedGroup == null) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
@@ -60,7 +52,7 @@ public class GroupRestController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Group> deleteGroup(@RequestBody Group group) {
+    public ResponseEntity<Group> deleteGroup(@RequestBody @NotNull Group group) {
         groupService.remove(group);
         return new ResponseEntity<>(HttpStatus.OK);
     }
