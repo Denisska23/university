@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ua.com.foxminded.dao.LectureDAO;
 import ua.com.foxminded.dao.LectureRepo;
+import ua.com.foxminded.exceptions.NotFoundException;
 import ua.com.foxminded.model.Lecture;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class LectureDaoAdapter implements LectureDAO {
 
     @Override
     public Lecture getById(Integer id) {
-        return repository.getOne(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Override

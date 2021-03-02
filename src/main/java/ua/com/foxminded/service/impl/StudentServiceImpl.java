@@ -4,10 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.StudentDAO;
+import ua.com.foxminded.exceptions.NotFoundException;
+import ua.com.foxminded.exceptions.NotModifiedException;
 import ua.com.foxminded.model.Student;
 import ua.com.foxminded.service.StudentService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static java.util.Optional.ofNullable;
 
@@ -15,7 +18,6 @@ import static java.util.Optional.ofNullable;
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
-
 
     private final StudentDAO studentDAO;
 
@@ -42,7 +44,8 @@ public class StudentServiceImpl implements StudentService {
         log.debug("method 'getById' invoked with parameter '{}'", id);
         Student student = studentDAO.getById(id);
         log.debug("method 'getById(Integer id)' result: '{}'", student);
-        return student;
+        return ofNullable(student)
+                .orElseThrow(() -> new NotFoundException(String.format("Student with id %s not found!", id)));
     }
 
     @Override
@@ -50,7 +53,8 @@ public class StudentServiceImpl implements StudentService {
         log.debug("method 'getAll' invoked");
         List<Student> students = studentDAO.getAll();
         log.debug("method 'getAll()' result: '{}'", students);
-        return students;
+        return ofNullable(students)
+                .orElseThrow(() -> new NotFoundException("List of students is empty!"));
     }
 
     @Override
@@ -58,7 +62,8 @@ public class StudentServiceImpl implements StudentService {
         log.debug("method 'update' invoked with parameter '{}'", entity);
         sanitize(entity);
         log.debug("method 'update(Student entity)' result: '{}'", entity);
-        return studentDAO.update(entity);
+        return ofNullable(studentDAO.update(entity))
+                .orElseThrow(() -> new NotModifiedException("Student is not modified!"));
     }
 
     @Override
