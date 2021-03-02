@@ -14,24 +14,24 @@ import java.time.LocalDateTime;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<Object> handleNotFoundException(NotFoundException e) {
+    public ResponseEntity<ApiExceptionData> handleNotFoundException(NotFoundException e) {
         return defaultErrorResponse(e, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(NotModifiedException.class)
-    public ResponseEntity<Object> handleNotFoundException(NotModifiedException e) {
+    public ResponseEntity<ApiExceptionData> handleNotFoundException(NotModifiedException e) {
         return defaultErrorResponse(e, HttpStatus.NOT_MODIFIED);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> handleNotValidateException(MethodArgumentNotValidException e) {
+    public ResponseEntity<ApiExceptionData> handleNotValidateException(MethodArgumentNotValidException e) {
         ApiExceptionData apiExceptionData = new ApiExceptionData("Validation error",
                 LocalDateTime.now(),
                 e.getBindingResult().getFieldError().getDefaultMessage());
         return new ResponseEntity<>(apiExceptionData, HttpStatus.BAD_REQUEST);
     }
 
-    private ResponseEntity<Object> defaultErrorResponse(Exception exception, HttpStatus httpStatus) {
+    private ResponseEntity<ApiExceptionData> defaultErrorResponse(Exception exception, HttpStatus httpStatus) {
         log.error("[ERROR] -> ", exception);
         ApiExceptionData apiExceptionData = new ApiExceptionData(exception.getMessage(), LocalDateTime.now());
         return new ResponseEntity<>(apiExceptionData, httpStatus);
