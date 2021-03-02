@@ -27,27 +27,18 @@ public class GroupRestController {
     @GetMapping()
     public ResponseEntity<List<Group>> getAllGroups() {
         List<Group> groups = groupService.getAll();
-        if (groups.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(groups, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<Group> getGroup(@PathVariable @NotNull Integer id) {
         Group group = groupService.getById(id);
-        if (group == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(group, HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<Group> updateGroup(@RequestBody @Valid @NotNull Group group) {
         Group updatedGroup = groupService.update(group);
-        if (updatedGroup == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-        }
         return new ResponseEntity<>(updatedGroup, HttpStatus.OK);
     }
 

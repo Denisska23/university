@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.CourseDAO;
+import ua.com.foxminded.exceptions.NotFoundException;
+import ua.com.foxminded.exceptions.NotModifiedException;
 import ua.com.foxminded.model.Course;
 import ua.com.foxminded.service.CourseService;
 
 import java.util.List;
+
+import static java.util.Optional.ofNullable;
 
 @Slf4j
 @Service
@@ -29,7 +33,8 @@ public class CourseServiceImpl implements CourseService {
         log.debug("method 'getById' invoked with parameter '{}'", id);
         Course course = courseDAO.getById(id);
         log.debug("method 'getById(Course entity)' result: '{}'", course);
-        return course;
+        return ofNullable(course)
+                .orElseThrow(() -> new NotFoundException(String.format("Course with id %s not found!", id)));
     }
 
     @Override
@@ -37,7 +42,8 @@ public class CourseServiceImpl implements CourseService {
         log.debug("method 'getAll' invoked");
         List<Course> courseList = courseDAO.getAll();
         log.debug("method 'getAll()' result: '{}'", courseList);
-        return courseList;
+        return ofNullable(courseList)
+                .orElseThrow(() -> new NotFoundException("List of courses is empty!"));
     }
 
     @Override
@@ -45,7 +51,8 @@ public class CourseServiceImpl implements CourseService {
         log.debug("method 'update' invoked with parameter '{}'", entity);
         Course course = courseDAO.update(entity);
         log.debug("method 'update(Course entity)' result: '{}'", course);
-        return course;
+        return ofNullable(course)
+                .orElseThrow(() -> new NotModifiedException("Course is not modified!"));
     }
 
     @Override

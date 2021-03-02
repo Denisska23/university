@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.GroupDAO;
+import ua.com.foxminded.exceptions.NotFoundException;
+import ua.com.foxminded.exceptions.NotModifiedException;
 import ua.com.foxminded.model.Group;
 import ua.com.foxminded.service.GroupService;
 
 import java.util.List;
+
+import static java.util.Optional.ofNullable;
 
 @Slf4j
 @Service
@@ -29,7 +33,8 @@ public class GroupServiceImpl implements GroupService {
         log.debug("method 'getById' invoked with parameter '{}'", id);
         Group group = groupDAO.getById(id);
         log.debug("method 'getById(Integer id)' result: '{}'", group);
-        return group;
+        return ofNullable(group)
+                .orElseThrow(() -> new NotFoundException(String.format("Group with id %s not found!", id)));
     }
 
     @Override
@@ -37,7 +42,8 @@ public class GroupServiceImpl implements GroupService {
         log.debug("method 'getAll' invoked");
         List<Group> groups = groupDAO.getAll();
         log.debug("method 'getAll()' result: '{}'", groups);
-        return groups;
+        return ofNullable(groups)
+                .orElseThrow(() -> new NotFoundException("List of groups is empty!"));
     }
 
     @Override
@@ -45,7 +51,8 @@ public class GroupServiceImpl implements GroupService {
         log.debug("method 'update' invoked with parameter '{}'", entity);
         Group group = groupDAO.update(entity);
         log.debug("method 'update(Group entity)' result: '{}'", group);
-        return group;
+        return ofNullable(group)
+                .orElseThrow(() -> new NotModifiedException("Group is not modified!"));
     }
 
     @Override

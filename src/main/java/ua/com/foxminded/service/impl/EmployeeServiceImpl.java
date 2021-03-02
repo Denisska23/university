@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ua.com.foxminded.dao.EmployeeDAO;
+import ua.com.foxminded.exceptions.NotFoundException;
+import ua.com.foxminded.exceptions.NotModifiedException;
 import ua.com.foxminded.model.Employee;
 import ua.com.foxminded.service.EmployeeService;
 
 import java.util.List;
+
+import static java.util.Optional.ofNullable;
 
 @Slf4j
 @Service
@@ -29,7 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         log.debug("method 'getById' invoked with parameter '{}'", id);
         Employee employee = employeeDAO.getById(id);
         log.debug("method 'getById(Integer id)' result: '{}'", employee);
-        return employee;
+        return ofNullable(employee)
+                .orElseThrow(() -> new NotFoundException(String.format("Employee with id %s not found!", id)));
     }
 
     @Override
@@ -37,7 +42,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         log.debug("method 'getAll' invoked");
         List<Employee> employees = employeeDAO.getAll();
         log.debug("method 'getAll()' result: '{}'", employees);
-        return employees;
+        return ofNullable(employees)
+                .orElseThrow(() -> new NotFoundException("List of employees is empty!"));
     }
 
     @Override
@@ -45,7 +51,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         log.debug("method 'update' invoked with parameter '{}'", entity);
         Employee employee = employeeDAO.update(entity);
         log.debug("method 'update(Employee entity)' result: '{}'", employee);
-        return employee;
+        return ofNullable(employee)
+                .orElseThrow(() -> new NotModifiedException("Employee is not modified!"));
     }
 
     @Override

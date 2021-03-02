@@ -21,7 +21,7 @@ public class IdCardDaoAdapter implements IdCardDAO {
 
     @Override
     public IdCard getById(Integer id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElse(null);
     }
 
     @Override

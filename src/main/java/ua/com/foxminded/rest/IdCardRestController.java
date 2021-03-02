@@ -27,27 +27,18 @@ public class IdCardRestController {
     @GetMapping()
     public ResponseEntity<List<IdCard>> getAllIdCards() {
         List<IdCard> idCards = idCardService.getAll();
-        if (idCards.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(idCards, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<IdCard> getIdCard(@PathVariable @NotNull Integer id) {
         IdCard idCard = idCardService.getById(id);
-        if (idCard == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(idCard, HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<IdCard> updateIdCard(@RequestBody @Valid @NotNull IdCard idCard) {
         IdCard updatedIdCard = idCardService.update(idCard);
-        if (updatedIdCard == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-        }
         return new ResponseEntity<>(updatedIdCard, HttpStatus.OK);
     }
 

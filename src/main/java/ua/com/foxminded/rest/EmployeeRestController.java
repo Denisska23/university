@@ -27,27 +27,18 @@ public class EmployeeRestController {
     @GetMapping()
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.getAll();
-        if (employees.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<Employee> getEmployee(@PathVariable @NotNull Integer id) {
         Employee employee = employeeService.getById(id);
-        if (employee == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<Employee> updateEmployee(@RequestBody @Valid @NotNull Employee employee) {
         Employee updatedEmployee = employeeService.update(employee);
-        if (updatedEmployee == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-        }
         return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
     }
 

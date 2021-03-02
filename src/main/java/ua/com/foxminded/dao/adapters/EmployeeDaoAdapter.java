@@ -21,7 +21,7 @@ public class EmployeeDaoAdapter implements EmployeeDAO {
 
     @Override
     public Employee getById(Integer id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElse(null);
     }
 
     @Override

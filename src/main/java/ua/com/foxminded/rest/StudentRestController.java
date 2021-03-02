@@ -27,27 +27,18 @@ public class StudentRestController {
     @GetMapping()
     public ResponseEntity<List<Student>> getAllStudents() {
         List<Student> students = studentService.getAll();
-        if (students.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<Student> getStudent(@PathVariable @NotNull Integer id) {
         Student student = studentService.getById(id);
-        if (student == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<Student> updateStudent(@RequestBody @Valid @NotNull Student student) {
         Student updatedStudent = studentService.update(student);
-        if (updatedStudent == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-        }
         return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
     }
 

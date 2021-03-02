@@ -27,27 +27,18 @@ public class LectureRestController {
     @GetMapping()
     public ResponseEntity<List<Lecture>> getAllLectures() {
         List<Lecture> lectures = lectureService.getAll();
-        if (lectures.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(lectures, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<Lecture> getLecture(@PathVariable @NotNull Integer id) {
         Lecture lecture = lectureService.getById(id);
-        if (lecture == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(lecture, HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<Lecture> updateLecture(@RequestBody @Valid @NotNull Lecture lecture) {
         Lecture updatedLecture = lectureService.update(lecture);
-        if (updatedLecture == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-        }
         return new ResponseEntity<>(updatedLecture, HttpStatus.OK);
     }
 
