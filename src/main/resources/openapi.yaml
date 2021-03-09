@@ -1,0 +1,22 @@
+openapi: "3.0.0"
+
+info:
+  version: "1.0"
+  title: University API
+  description: "Simple API for university"
+
+servers:
+  - url: localhost:8080/api
+
+paths:
+  /student:
+    get:
+      summary: "Get all students"
+      description: "Return a list of students from database."
+      responses:
+        200:
+          description: Sunrise and sunset times response
+          content:
+            application/json:
+              schema:
+                type: array
